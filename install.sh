@@ -26,14 +26,14 @@ main() {
 	# Install s3fs using APT.
 	install_package "s3fs"
 
-	# Obtain Amazon AWS S3 Bucket Name.
-	ask "Enter Amazon AWS S3 Bucket Name: " ; bucket_name=$(get_answer)
+	# Obtain Wasabi S3 Bucket Name.
+	ask "Enter Wasabi S3 Bucket Name: " ; bucket_name=$(get_answer)
 
-	# Obtain Amazon AWS Secret Key & ID.
-	ask "Enter Amazon AWS Secret Key ID: " ; secret_key_id=$(get_answer)
-	ask "Enter Amazon AWS Secret Key: " ; secret_key=$(get_answer)
+	# Obtain Wasabi Secret Key & ID.
+	ask "Enter Wasabi Secret Key ID: " ; secret_key_id=$(get_answer)
+	ask "Enter Wasabi AWS Secret Key: " ; secret_key=$(get_answer)
 
-	# Write Amazon AWS Secret Key & ID to '/etc/passwd-s3fs'.
+	# Write Wasabi Secret Key & ID to '/etc/passwd-s3fs'.
 	echo "${secret_key_id}:${secret_key}" > "/etc/passwd-s3fs"
 
 	# Change the permissions of '/etc/passwd-s3fs'.
@@ -44,8 +44,8 @@ main() {
 		mkdir -p "/mnt/${bucket_name}"
 	fi
 
-	# Make the Amazon AWS S3 Bucket mount on boot.
-	payload="s3fs#${bucket_name} /mnt/${bucket_name} fuse _netdev,rw,nosuid,nodev,allow_other,nonempty 0 0"
+	# Make the Wasabi S3 Bucket mount on boot.
+	payload="s3fs#${bucket_name} /mnt/${bucket_name} fuse _netdev,rw,nosuid,nodev,allow_other,nonempty,url=https://s3.wasabisys.com 0 0"
 	grep -Fq "${payload}" /etc/fstab || {
 		echo "${payload}" >> /etc/fstab
 	}
