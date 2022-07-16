@@ -1,0 +1,4 @@
+#Add this in /root/.netrc, create the file if not exists
+machine fts.url.com
+login username
+password token/<oauth_token>
