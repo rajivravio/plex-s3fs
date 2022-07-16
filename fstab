@@ -1,0 +1,4 @@
+#add these lines to /etc/fstab to mount putio and s3 as local mounted file systems
+
+s3fs#plex-wasabi-fileshare /mnt/plex-wasabi-fileshare fuse _netdev,rw,nosuid,nodev,allow_other,nonempty,url=https://s3.wasabisys.com 0 0
+curlftpfs#ftp.put.io /mnt/putio fuse allow_other,nonempty,uid=0,gid=0 0 0
