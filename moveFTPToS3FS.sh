@@ -16,7 +16,7 @@ do_the_action () {
 
 #check if this script is already running
 previous_instance_active () {
-  pgrep -fa bash | grep -v "^$$ " | grep --quiet '/bin/scripts/copyPutioToS3.sh' 
+  pgrep -fa bash | grep -v "^$$ " | grep --quiet '/bin/scripts/moveFTPToS3FS.sh' 
 }
 
 #skip running again if there is an existing run, helps avoid issues with crontab automation
