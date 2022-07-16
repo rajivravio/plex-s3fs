@@ -1,12 +1,29 @@
 #!/bin/bash
-curlftpfs ftpuser:token/<oauthtoken>@ftp.url.com:21/ /mnt/putio
-#might need sleep 1 here
-sleep 10
-#copy from putio TV & Movies folders to S3
-cp -r /mnt/putio/TV/* /mnt/plex-wasabi-fileshare/TV/
-cp -r /mnt/putio/Movies/* /mnt/plex-wasabi-fileshare/Movies/
+#ensure s3 and ftp are mounted according to /etc/fstab setup
 
-#delete files in putio after transfer to free up space for future downloads
-rm -rf /mnt/putio/TV/*
-rm -rf /mnt/putio/Movies/*
-fusermount -uz /mnt/putio
+do_the_action () {
+  #date +"PID: $$ Putio to S3 copy started at %H:%M:%S"
+  mount -a
+  #might need sleep 1 here
+  sleep 10
+  cp -r /mnt/putio/TV/* /mnt/plex-wasabi-fileshare/TV/
+  cp -r /mnt/putio/Movies/* /mnt/plex-wasabi-fileshare/Movies/
+  rm -rf /mnt/putio/TV/*
+  rm -rf /mnt/putio/Movies/*
+  #fusermount -uz /mnt/putio
+  #date +"PID: $$ Putio to S3 copy finished at %H:%M:%S"
+}
+
+#check if this script is already running
+previous_instance_active () {
+  pgrep -fa bash | grep -v "^$$ " | grep --quiet '/bin/scripts/copyPutioToS3.sh' 
+}
+
+#skip running again if there is an existing run, helps avoid issues with crontab automation
+if previous_instance_active
+then 
+  date +"PID: $$ Previous instance is still active at %H:%M:%S, aborting ... "
+else 
+  do_the_action
+fi
+
