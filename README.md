@@ -19,6 +19,38 @@ In order to properly configure our Plex server, we need to add the required clai
 
 `ssh username@ip_of_server -L 32400:localhost:32400 -N`
 
+## OPTIONAL: Putio configuration
+
+If you are using Putio for downloading, setup automation of content transfer from putio to S3. 
+ - Install curlftpfs
+ - Add the putio ftp mount point in /etc/fstab 
+ - Add the putio credentials in /root/.netrc
+ - Add the script to move the files in /bin/scripts
+ - Add the script in crontab to run on schedule
+ 
+## OPTIONAL: IFTTT configuration to send magnet links through telegram to trigger download in putio
+
+This will allow you to initiate transfer from telegram app on your phone. Which allows you to download content from your phone without need for a computer directly to putio. After download finishes, it is then automatically added it to your plex s3 as setup previously. You can set up an applet for each library folder using template: https://ifttt.com/applets/u6iu3ECm-send-a-message-to-ifttt-on-telegram-to-start-a-new-transfer-at-put-io?term=putio
+
+Setup similar folder structure in putio to seperate the content saved in putio 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Liability
 
 The creator of this repo is _not responsible_ if your machine ends up in a state you are not happy with.
