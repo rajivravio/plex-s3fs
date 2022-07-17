@@ -1,12 +1,5 @@
 # plex-s3fs 🎥🍿
 
-Modified nicholasadamou's script to support Wasabi S3 instead of AWS S3. Since network egress is free w/ Wasabi, it is the better choice to host video.
-
-[![License](https://img.shields.io/github/license/nicholasadamou/stockflight.svg?label=License&maxAge=86400)](./LICENSE)
-![Say Thanks](https://img.shields.io/badge/say-thanks-ff69b4.svg)
-
----
-
 ## Getting Started
 
 ## Setup
@@ -70,3 +63,10 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+
+Modified nicholasadamou's script to support Wasabi S3 instead of AWS S3. Since network egress is free w/ Wasabi, it is the better choice to host video.
+
+[![License](https://img.shields.io/github/license/nicholasadamou/stockflight.svg?label=License&maxAge=86400)](./LICENSE)
+![Say Thanks](https://img.shields.io/badge/say-thanks-ff69b4.svg)
+
